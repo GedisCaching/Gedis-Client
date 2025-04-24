@@ -12,7 +12,7 @@ var (
 	Password string
 
 	// Gedis is the Gedis client instance
-	Gedisclient *gedis.Gedis
+	GedisClient *gedis.Gedis
 )
 
 // INIT initializes the configuration by loading environment variables
@@ -30,7 +30,7 @@ func Init() error {
 	}
 
 	var err error
-	Gedisclient, err = gedis.NewGedis(gedis.Config{
+	GedisClient, err = gedis.NewGedis(gedis.Config{
 		Address:  Address,
 		Password: Password,
 	})

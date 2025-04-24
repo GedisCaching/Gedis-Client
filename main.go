@@ -14,9 +14,9 @@ func main() {
 	fmt.Println("Initialization complete.")
 
 	// Example usage of the Gedis client
-	config.Gedisclient.Set("key", "value")
+	config.GedisClient.Set("key", "value")
 
-	value, exists := config.Gedisclient.Get("key")
+	value, exists := config.GedisClient.Get("key")
 
 	if !exists {
 		log.Fatalf("Key does not exist")
