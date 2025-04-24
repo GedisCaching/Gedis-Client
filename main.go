@@ -20,9 +20,13 @@ func main() {
 	fmt.Println("Basic operations completed ✅")
 	fmt.Println("")
 
-
 	// Perform numeric operations
 	operations.NumericOperations()
 	fmt.Println("Numeric operations completed ✅")
+	fmt.Println("")
+
+	// Perform list operations
+	operations.ListOperations()
+	fmt.Println("List operations completed ✅")
 	fmt.Println("")
 }
