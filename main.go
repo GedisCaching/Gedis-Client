@@ -1,55 +1,26 @@
 package main
 
 import (
+	"Gedis-Client/config"
 	"fmt"
-	gedis "github.com/GedisCaching/Gedis/gedis"
-	"github.com/joho/godotenv"
 	"log"
-	"os"
 )
 
-// LoadEnv loads environment variables with fallback to defaults
-func LoadEnv() (addr string, password string) {
-	if err := godotenv.Load(".env"); err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	addr = os.Getenv("ADDRESS")
-	password = os.Getenv("PASSWORD")
-	return addr, password
-}
-
 func main() {
-
-	// Load environment variables
-	Address, Password := LoadEnv()
-
-	if Address == "" || Password == "" {
-		log.Fatal("Missing required environment variables: ADDRESS and PASSWORD")
+	if err := config.Init(); err != nil {
+		log.Fatalf("Failed to initialize config: %v", err)
 	}
 
-	fmt.Printf("Connecting to Gedis at %s\n", Address)
+	fmt.Println("Initialization complete.")
 
-	srv, err := gedis.NewGedis(gedis.Config{
-		Address:  Address,
-		Password: Password,
-	})
+	// Example usage of the Gedis client
+	config.Gedisclient.Set("key", "value")
 
-	if err != nil {
-		fmt.Println("Error creating server:", err)
-		return
-	}
+	value, exists := config.Gedisclient.Get("key")
 
-	// Set a key-value pair
-	srv.Set("name", "Gedis")
-
-	// Get the value of the key
-	value, exists := srv.Get("name")
 	if !exists {
-		fmt.Println("Key 'name' does not exist")
-		return
+		log.Fatalf("Key does not exist")
 	}
 
-	// Print the value
-	fmt.Println("Value of 'name':", value)
+	fmt.Println("Retrieved value:", value)
 }
