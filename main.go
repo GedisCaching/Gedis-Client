@@ -34,4 +34,9 @@ func main() {
 	operations.SortedSetOperations()
 	fmt.Println("Sorted set operations completed ✅")
 	fmt.Println("")
+
+	// Perform TTL operations
+	operations.TTLOperations()
+	fmt.Println("TTL operations completed ✅")
+	fmt.Println("")
 }
