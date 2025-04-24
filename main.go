@@ -2,6 +2,7 @@ package main
 
 import (
 	"Gedis-Client/config"
+	"Gedis-Client/operations"
 	"fmt"
 	"log"
 )
@@ -11,16 +12,9 @@ func main() {
 		log.Fatalf("Failed to initialize config: %v", err)
 	}
 
-	fmt.Println("Initialization complete.")
+	fmt.Println("Initialization complete ✅")
 
-	// Example usage of the Gedis client
-	config.GedisClient.Set("key", "value")
-
-	value, exists := config.GedisClient.Get("key")
-
-	if !exists {
-		log.Fatalf("Key does not exist")
-	}
-
-	fmt.Println("Retrieved value:", value)
+	// Perform basic operations
+	operations.BasicOperations()
+	fmt.Println("Basic operations completed ✅")
 }
