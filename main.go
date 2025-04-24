@@ -29,4 +29,9 @@ func main() {
 	operations.ListOperations()
 	fmt.Println("List operations completed ✅")
 	fmt.Println("")
+
+	// Perform sorted set operations
+	operations.SortedSetOperations()
+	fmt.Println("Sorted set operations completed ✅")
+	fmt.Println("")
 }
