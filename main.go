@@ -13,8 +13,16 @@ func main() {
 	}
 
 	fmt.Println("Initialization complete ✅")
+	fmt.Println("")
 
 	// Perform basic operations
 	operations.BasicOperations()
 	fmt.Println("Basic operations completed ✅")
+	fmt.Println("")
+
+
+	// Perform numeric operations
+	operations.NumericOperations()
+	fmt.Println("Numeric operations completed ✅")
+	fmt.Println("")
 }
