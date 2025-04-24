@@ -39,4 +39,9 @@ func main() {
 	operations.TTLOperations()
 	fmt.Println("TTL operations completed ✅")
 	fmt.Println("")
+
+	// Perform hash operations
+	operations.HashOperations()
+	fmt.Println("Hash operations completed ✅")
+	fmt.Println("")
 }
