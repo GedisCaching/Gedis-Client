@@ -46,107 +46,118 @@ Gedis Client is a Go-based client for interacting with the Gedis caching server,
 
 ### Running the Example Client
 
-The example client demonstrates various operations supported by Gedis:
+#### install the Gedis client package:
 
 ```bash
-go run main.go
+go get github.com/GedisCaching/Gedis/gedis
 ```
+
+### Gedis Client
+
+```go
+import (
+	gedis "github.com/GedisCaching/Gedis/gedis"
+)
+  
+
+GedisClient, err := gedis.NewGedis(gedis.Config{
+   Address:  Address,
+   Password: Password,
+})
+
+```
+
+
+The example client demonstrates various operations supported by Gedis:
 
 ### Basic Operations
 
 ```go
-import (
-    "github.com/GedisCaching/Gedis-Client/config"
-)
-
-// Initialize client
-config.Init()
-
 // Set a key
-config.GedisClient.Set("key", "value")
+GedisClient.Set("key", "value")
 
 // Get a key
-value, exists := config.GedisClient.Get("key")
+value, exists := GedisClient.Get("key")
 
 // Delete a key
-config.GedisClient.Delete("key")
+GedisClient.Delete("key")
 
 // Rename a key
-config.GedisClient.RENAME("original", "renamed")
+GedisClient.RENAME("original", "renamed")
 
 // List all keys
-keys := config.GedisClient.Keys()
+keys := GedisClient.Keys()
 ```
 
 ### Numeric Operations
 
 ```go
 // Increment a value
-newValue := config.GedisClient.INCR("counter")
+newValue := GedisClient.INCR("counter")
 
 // Decrement a value
-newValue := config.GedisClient.DECR("counter")
+newValue := GedisClient.DECR("counter")
 ```
 
 ### List Operations
 
 ```go
 // Add items to the beginning of a list
-config.GedisClient.LPUSH("mylist", "item1", "item2")
+GedisClient.LPUSH("mylist", "item1", "item2")
 
 // Add items to the end of a list
-config.GedisClient.RPUSH("mylist", "item3", "item4")
+GedisClient.RPUSH("mylist", "item3", "item4")
 
 // Remove and get the first item
-item, exists := config.GedisClient.LPOP("mylist")
+item, exists := GedisClient.LPOP("mylist")
 
 // Remove and get the last item
-item, exists := config.GedisClient.RPOP("mylist")
+item, exists := GedisClient.RPOP("mylist")
 
 // Get a range of items
-items, exists := config.GedisClient.LRANGE("mylist", 0, -1)
+items, exists := GedisClient.LRANGE("mylist", 0, -1)
 ```
 
 ### Hash Operations
 
 ```go
 // Set a field in a hash
-config.GedisClient.HSET("user:1", "name", "John Doe")
+GedisClient.HSET("user:1", "name", "John Doe")
 
 // Get a field from a hash
-value, exists := config.GedisClient.HGET("user:1", "name")
+value, exists := GedisClient.HGET("user:1", "name")
 
 // Get all fields and values in a hash
-data, exists := config.GedisClient.HGETALL("user:1")
+data, exists := GedisClient.HGETALL("user:1")
 
 // Delete a field from a hash
-deleted, err := config.GedisClient.HDEL("user:1", "name")
+deleted, err := GedisClient.HDEL("user:1", "name")
 
 // Get all field names in a hash
-fields, exists := config.GedisClient.HKEYS("user:1")
+fields, exists := GedisClient.HKEYS("user:1")
 
 // Get the number of fields in a hash
-length, exists := config.GedisClient.HLEN("user:1")
+length, exists := GedisClient.HLEN("user:1")
 ```
 
 ### TTL Operations
 
 ```go
 // Set a key with an expiration time (in seconds)
-config.GedisClient.EXPIRE("key", 60)
+GedisClient.EXPIRE("key", 60)
 
 // Get the remaining time to live for a key
-ttl, exists := config.GedisClient.TTL("key")
+ttl, exists := GedisClient.TTL("key")
 ```
 
 ### Sorted Set Operations
 
 ```go
 // Add members to a sorted set
-config.GedisClient.ZADD("myzset", 1, "one")
+GedisClient.ZADD("myzset", 1, "one")
 
 // Get a range of members from a sorted set
-members, exists := config.GedisClient.ZRANGE("myzset", 0, -1)
+members, exists := GedisClient.ZRANGE("myzset", 0, -1)
 ```
 
 ## License
